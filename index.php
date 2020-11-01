@@ -20,11 +20,12 @@ class Renamer {
 
 while (false !== ($file = readdir($this->dir)))
 {
-    if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) == $type)
-    {
-        
+  $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+    
+        $newName = $this->prefix . $i . '.' . $extension . '<br>';
+        echo $newName;
         $i++;
-    }
+    
 }
 closedir($this->dir);
 		
