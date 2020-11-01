@@ -9,10 +9,12 @@ class Renamer {
 	protected $dir;
 	protected $folder;
 	
-	function __construct($prefix) {
-		
+	function __construct($prefix=null) {
+		if (empty($prefix)) {
+			$this->prefix = "file";
+			} else {
 		$this->prefix = $prefix;
-	
+		}
 	}
 		
 	public function setDir($dir) {
@@ -30,9 +32,9 @@ class Renamer {
 		}
 		}
 		
-	public function renamer() {
 		
-$i = 1;
+	public function launch() {
+		
 while (false !== ($file = readdir($this->dir)))
 {
   $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
@@ -40,7 +42,7 @@ while (false !== ($file = readdir($this->dir)))
     if (!empty($extension)) {
         $newName = $this->prefix .'_' . $filename . '_' . $extension . '.' . $extension;
         rename($this->folder . $file, $this->folder . $newName);
-        $i++;
+        
     }
 }
 echo "Renamed Successfully....!!!";
@@ -50,6 +52,6 @@ closedir($this->dir);
 		
 }
 
-$object = new Renamer("test");
+$object = new Renamer("hello");
 $object->setDir("upload/");
-$object->renamer();
+$object->launch();
