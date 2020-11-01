@@ -4,33 +4,34 @@
 class Renamer {
 	
 	private $prefix;
-	private $dir;
+	protected $dir;
 	
 	function __construct($prefix) {
 		
 		$this->prefix = $prefix;
 	
 	}
-	
-	public function setDir($dir) {
-		if (!empty($dir)) {
-			$this->dir = $dir;
-		return opendir($this->dir);
-		} else { 
-			return "directory is empty";
-		}
-		}
-	
-	public function resetDir($dir) {
-		if (isset($dir)) {
-		return closedir($this->dir);
-		} else { 
-			return "directory is empty";
-		}
+		
+		
+	public function renamer() {
+		$this->dir = opendir("upload/");
+		
+		$i = 1;
+
+while (false !== ($file = readdir($this->dir)))
+{
+    if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) == $type)
+    {
+        
+        $i++;
+    }
+}
+closedir($this->dir);
+		
 		}
 		
 		
 }
 
 $object = new Renamer("test");
-$object->setDir('upload/');
+$object->renamer();
