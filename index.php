@@ -22,8 +22,8 @@ while (false !== ($file = readdir($this->dir)))
 {
   $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
     if (!empty($extension)) {
-        $newName = $this->prefix .'_' .$i . '_' . $extension . '.' . $extension. '<br>';
-        echo $newName;
+        $newName = $this->prefix .'_' .$i . '_' . $extension . '.' . $extension;
+        rename('upload/' . $file, 'upload/' . $newName);
         $i++;
     }
 }
