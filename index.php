@@ -12,3 +12,5 @@ class Renamer {
 	}
 	
 }
+
+$object = new Renamer();
