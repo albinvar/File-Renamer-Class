@@ -12,9 +12,12 @@ class Renamer {
 	
 	}
 		
+	public function setDir($dir) {
+		$this->dir = opendir($dir);
+		}
 		
 	public function renamer() {
-		$this->dir = opendir("upload/");
+		
 		
 		$i = 1;
 
@@ -36,4 +39,5 @@ closedir($this->dir);
 }
 
 $object = new Renamer("test");
+$object->setDir("upload/");
 $object->renamer();
