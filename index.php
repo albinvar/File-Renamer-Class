@@ -21,8 +21,9 @@ class Renamer {
 while (false !== ($file = readdir($this->dir)))
 {
   $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+  $filename = strtolower(pathinfo($file, PATHINFO_FILENAME));
     if (!empty($extension)) {
-        $newName = $this->prefix .'_' .$i . '_' . $extension . '.' . $extension;
+        $newName = $this->prefix .'_' . $filename . '_' . $extension . '.' . $extension;
         rename('upload/' . $file, 'upload/' . $newName);
         $i++;
     }
