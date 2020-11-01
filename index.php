@@ -6,20 +6,31 @@ class Renamer {
 	private $prefix;
 	private $dir;
 	
-	function __construct($prefix, $dir) {
+	function __construct($prefix) {
 		
 		$this->prefix = $prefix;
-		$this->dir = $dir;
 	
 	}
 	
-	public function setDir($this->dir) {
-		if (isset($this->dir)) {
+	public function setDir($dir) {
+		if (!empty($dir)) {
+			$this->dir = $dir;
 		return opendir($this->dir);
 		} else { 
 			return "directory is empty";
 		}
+		}
 	
+	public function resetDir($dir) {
+		if (isset($dir)) {
+		return closedir($this->dir);
+		} else { 
+			return "directory is empty";
+		}
+		}
+		
+		
 }
 
-$object = new Renamer();
+$object = new Renamer("test");
+$object->setDir('upload/');
