@@ -21,11 +21,11 @@ class Renamer {
 while (false !== ($file = readdir($this->dir)))
 {
   $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-    
+    if (!empty($extension)) {
         $newName = $this->prefix . $i . '.' . $extension . '<br>';
         echo $newName;
         $i++;
-    
+    }
 }
 closedir($this->dir);
 		
