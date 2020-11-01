@@ -1,6 +1,8 @@
 <?php
 //index.php
 
+set_time_limit(10);
+
 class Renamer {
 	
 	private $prefix;
@@ -41,6 +43,7 @@ while (false !== ($file = readdir($this->dir)))
         $i++;
     }
 }
+echo "Renamed Successfully....!!!";
 closedir($this->dir);
 		
 		}
