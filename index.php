@@ -2,7 +2,8 @@
 
 //index.php
 
+
 require 'Renamer.php';
 
-$object = new Renamer('Your Prefix', 'upload/');
+$object = new Renamer(null, 'upload/');
 $object->launch();
