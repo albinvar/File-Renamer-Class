@@ -4,6 +4,5 @@
 
 require 'Renamer.php';
 
-$object = new Renamer('Your Prefix');
-$object->setDir('directory/');
+$object = new Renamer('Your Prefix', 'upload/');
 $object->launch();

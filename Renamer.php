@@ -9,17 +9,14 @@ class Renamer
 
     private $prefix;
 
-    public function __construct($prefix = null)
+    public function __construct($prefix = null, $dir)
     {
         if (empty($prefix)) {
             $this->prefix = 'file';
         } else {
             $this->prefix = $prefix;
         }
-    }
-
-    public function setDir($dir)
-    {
+        
         if (!empty($dir)) {
             if (is_dir($dir)) {
                 $this->folder = $dir;
