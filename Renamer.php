@@ -7,7 +7,8 @@ class Renamer
     protected $folder;
     protected $time;
 	private $file;
-
+	public $array;
+	
     public function __construct($prefix=null, $dir)
     {
         if (empty($prefix)) {
@@ -62,15 +63,14 @@ class Renamer
 		}
 
 	public function getFiles() {
-		
+		$array=[];
 		while (false !== ($file = readdir($this->dir))) {
          $properties = $this->fileProperties($file);
             if (!empty($properties['ext'])) {
-                $filename = $properties['basename'];
-                echo $filename . "<br>";
+                array_push($array, $properties['basename']);
             }
         }
-		
+		return $array;
 		}
 
     public function launch()
