@@ -33,23 +33,23 @@ class Renamer
 	public function fileProperties($file) {
 		
 	$extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-    $filename = strtolower(pathinfo($file, PATHINFO_FILENAME));
+    $name = strtolower(pathinfo($file, PATHINFO_FILENAME));
+    $basename = strtolower(pathinfo($file, PATHINFO_BASENAME));
     
     $array = [
     
     "ext" => $extension,
-    "name" => $filename
-    
+    "name" => $name,
+    "basename" => $basename
     ];
     
     return $array;
     
 		}
 
-
-    public function launch()
-   {
-    while (false !== ($file = readdir($this->dir))) {
+	public function renameFiles() {
+		
+		while (false !== ($file = readdir($this->dir))) {
          $properties = $this->fileProperties($file);
             if (!empty($properties['ext'])) {
                 $newName = $this->prefix.'_'.$properties['name'].'_'.$properties['ext'].'.'.$properties['ext'];
@@ -58,7 +58,26 @@ class Renamer
         }
         echo "Renamed Successfully....!!!";
         closedir($this->dir);
-   
+        
+		}
+
+	public function getFiles() {
+		
+		while (false !== ($file = readdir($this->dir))) {
+         $properties = $this->fileProperties($file);
+            if (!empty($properties['ext'])) {
+                $filename = $properties['basename'];
+                echo $filename . "<br>";
+            }
+        }
+		
+		}
+
+    public function launch()
+   {
+    
+    $this->renameFiles();
+  
    }
         
 }
