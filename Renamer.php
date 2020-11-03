@@ -22,12 +22,10 @@ class Renamer
                 $this->folder = $dir;
                 $this->dir = opendir($dir);
             } else {
-                echo 'Invalid Directory';
-                exit();
+                return 'Invalid Directory';
             }
         } else {
-            echo 'please specify a Directory';
-            exit();
+            return 'please specify a Directory';
         }
     }
 
@@ -55,7 +53,7 @@ class Renamer
                 rename($this->folder.$file, $this->folder.$newName);
             }
         }
-        echo 'Renamed Successfully....!!!';
+        return 'Renamed Successfully....!!!';
     }
 
     public function getFiles()
