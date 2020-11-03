@@ -63,14 +63,13 @@ class Renamer
 		}
 
 	public function getFiles() {
-		$array=[];
-		while (false !== ($file = readdir($this->dir))) {
-         $properties = $this->fileProperties($file);
-            if (!empty($properties['ext'])) {
-                array_push($array, $properties['basename']);
-            }
-        }
-		return $array;
+
+	$array = scandir($this->folder);
+	array_shift($array);
+    array_shift($array);
+	
+	return $array;
+
 		}
 
     public function launch()
