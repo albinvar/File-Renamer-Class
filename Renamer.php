@@ -50,7 +50,9 @@ class Renamer
 
 	public function renameFiles() {
 		
-		while (false !== ($file = readdir($this->dir))) {
+		$array = $this->getFiles();
+		
+		foreach ($array as $file) {
          $properties = $this->fileProperties($file);
             if (!empty($properties['ext'])) {
                 $newName = $this->prefix.'_'.$properties['name'].'_'.$properties['ext'].'.'.$properties['ext'];
@@ -58,7 +60,6 @@ class Renamer
             }
         }
         echo "Renamed Successfully....!!!";
-        closedir($this->dir);
         
 		}
 
