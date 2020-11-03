@@ -2,22 +2,22 @@
 
 class Renamer
 {
-	private $prefix;
+    public $array;
     protected $dir;
     protected $folder;
     protected $time;
-	private $file;
-	public $array;
-	
-    public function __construct($prefix=null, $dir)
+    private $prefix;
+    private $file;
+
+    public function __construct($prefix = null, $dir)
     {
         if (empty($prefix)) {
             $this->prefix = 'file';
         } else {
             $this->prefix = $prefix;
-        } 
+        }
 
-		if (!empty($dir)) {
+        if (!empty($dir)) {
             if (is_dir($dir)) {
                 $this->folder = $dir;
                 $this->dir = opendir($dir);
@@ -31,53 +31,44 @@ class Renamer
         }
     }
 
-	public function fileProperties($file) {
-		
-	$extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-    $name = strtolower(pathinfo($file, PATHINFO_FILENAME));
-    $basename = strtolower(pathinfo($file, PATHINFO_BASENAME));
-    
-    $array = [
-    
-    "ext" => $extension,
-    "name" => $name,
-    "basename" => $basename
-    ];
-    
-    return $array;
-    
-		}
+    public function fileProperties($file)
+    {
+        $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+        $name = strtolower(pathinfo($file, PATHINFO_FILENAME));
+        $basename = strtolower(pathinfo($file, PATHINFO_BASENAME));
 
-	public function renameFiles() {
-		
-		$array = $this->getFiles();
-		
-		foreach ($array as $file) {
-         $properties = $this->fileProperties($file);
+        return [
+            'ext' => $extension,
+            'name' => $name,
+            'basename' => $basename,
+        ];
+    }
+
+    public function renameFiles()
+    {
+        $array = $this->getFiles();
+
+        foreach ($array as $file) {
+            $properties = $this->fileProperties($file);
             if (!empty($properties['ext'])) {
                 $newName = $this->prefix.'_'.$properties['name'].'_'.$properties['ext'].'.'.$properties['ext'];
                 rename($this->folder.$file, $this->folder.$newName);
             }
         }
-        echo "Renamed Successfully....!!!";
-        
-		}
+        echo 'Renamed Successfully....!!!';
+    }
 
-	public function getFiles() {
+    public function getFiles()
+    {
+        $array = scandir($this->folder);
+        array_shift($array);
+        array_shift($array);
 
-	$array = scandir($this->folder);
-	array_shift($array);
-    array_shift($array);
-	
-	return $array;
-
-		}
+        return $array;
+    }
 
     public function launch()
-   {
-    
-    $this->renameFiles();
-  
-   }
-        
+    {
+        $this->renameFiles();
+    }
 }

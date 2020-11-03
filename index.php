@@ -1,7 +1,8 @@
 <?php
+
 //index.php
 
-/*My first project using oop*/
+// My first project using oop
 
 //require Ranamer class
 require 'Renamer.php';
@@ -16,4 +17,3 @@ var_dump($object->getFiles());
 
 //start renaming process.
 $object->launch();
-
