@@ -12,19 +12,23 @@ Clone the [repo](https://github.com/albinvar/File-Renamer-Class.git) and configu
 
 Add the library to you index.php 
 
-``` require 'Renamer.php'; ```
+```php
+require 'Renamer.php'; ```
 
 Create new object using a prefix & the directory name.
 
-``` $object = new Renamer('prefix here', 'upload/'); ```
+```php
+$object = new Renamer('prefix here', 'upload/'); ```
 
 Get all files in the directory in the fom of array using getFiles().
 
-``` $object->getFiles(); ```
+```php 
+$object->getFiles(); ```
 
 Launch Renamer Class using launch()
 
-``` $object->launch(); ```
+```php 
+$object->launch(); ```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
